@@ -5,10 +5,9 @@ import ChatBotScreen from './screens/ChatBotScreen';
 
 const App = () => {
   return (
-  //  <NavigationContainer>
-  //    <MainStackNavigator/>
-  //  </NavigationContainer>
-      <ChatBotScreen/>
+    <NavigationContainer>
+      <MainStackNavigator/>
+    </NavigationContainer>
   );
 }
 

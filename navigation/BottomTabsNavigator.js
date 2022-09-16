@@ -1,10 +1,10 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import {Text, Platform } from 'react-native';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import HomeScreen from "../screens/HomeScreen";
 import AgendarVisitaScreen from "../screens/AgendarVisitaScreen";
 import ConsultaVisitaScreen from "../screens/ConsultaVisitasScreen";
+import ChatBotScreen from "../screens/ChatBotScreen";
 
 export default () => {
     const BottomTab = createBottomTabNavigator();
@@ -64,7 +64,7 @@ export default () => {
                                         fontSize: 11,
                                         textAlign: 'center'
                                     }}>
-                                    Agendar
+                                    Cadastrar
                                 </Text>
                             </>
                         )
@@ -89,7 +89,32 @@ export default () => {
                                         fontSize: 11,
                                         textAlign: 'center'
                                     }}>
-                                    Perfil
+                                    Agenda
+                                </Text>
+                            </>
+                        )
+                    }}
+                />
+                <BottomTab.Screen
+                    name="ChatBotTab"
+                    component={ChatBotScreen} 
+                    options={{
+                        tabBarIcon: ({ focused }) => (
+                            <>
+                                <Ionicons
+                                    name='chatbubbles'
+                                    size={20}
+                                    color={focused ? '#82B3A6' : '#91A2AD'}
+                                />
+                                <Text
+                                    allowFontScaling={false}
+                                    style={{
+                                        color: focused ? '#82B3A6' : '#91A2AD',
+                                        width: 50,
+                                        fontSize: 11,
+                                        textAlign: 'center'
+                                    }}>
+                                    Chatbot
                                 </Text>
                             </>
                         )
