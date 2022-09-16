@@ -1,30 +1,65 @@
-import React, {useState } from 'react';
+import React, {useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TextInput, Pressable, Modal} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 const AgendarVisitaScreen = ({ navigation }) => {
 
     const [ visivel, setVisivel ] = useState(false);
+    const [ data, setData ] = useState([]);
 
     const [nomePaciente, setNomePaciente]=useState(null)
     const [hospital, setHospital]=useState(null)
-    const [data, setData]=useState(null)
+    const [dataDaVisita, setDataDaVisita]=useState(null)
     const [relacaoFamilia, setRelacaoFamilia]=useState(null)
     const [motivo, setMotivo]=useState(null)
 
-    function confirmarCadastro() {
+    const onInit = async () => {
+        try {
+          const lista = await AsyncStorage.getItem('list')
+          if(lista != null) {
+            setData(JSON.parse(lista))
+          } 
+        } catch (e) {
+          console.log('erro na requisição' + e)
+        }
+      };
+
+    async function confirmarCadastro() {
+        try {
+            data.push(criarObjeto());
+            const json = JSON.stringify(data)
+            await AsyncStorage.setItem('list', json)
+        } catch {
+            console.log(error);
+            throw new Error("Erro para gravar usuário");
+        }
         setVisivel(true)
         limparDados()
+    }
+
+    function criarObjeto() {
+        let item = {
+            id: (Math.random() * 1000).toFixed(0).toString(),
+            nome: nomePaciente,
+            hospital: hospital,
+            dataDaVisita: dataDaVisita,
+            relacaoFamilia: relacaoFamilia,
+            motivo: motivo,
+        }
+        return item;
     }
 
     function limparDados() {
         setNomePaciente(null)
         setHospital(null)
-        setData(null)
+        setDataDaVisita(null)
         setRelacaoFamilia(null)
         setMotivo(null)
     }
+
+    useEffect(() => { onInit(); }, []);
 
     return (
         <View style={{backgroundColor: '#82B3A6', height: 800}}>
@@ -49,8 +84,8 @@ const AgendarVisitaScreen = ({ navigation }) => {
                     placeholderTextColor={'#63877E'}/>
 
                 <TextInput style={styles.input}
-                    onChangeText={setData}
-                    value={data}
+                    onChangeText={setDataDaVisita}
+                    value={dataDaVisita}
                     placeholder = 'DATA DA VISITA'
                     placeholderTextColor={'#63877E'}/>
 

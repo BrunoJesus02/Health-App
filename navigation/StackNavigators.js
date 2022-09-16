@@ -5,6 +5,8 @@ import LoginScreen from '../screens/LoginScreen';
 import DetalheScreen from '../screens/DetalheTriagemScreen'
 import CadastroScreen from '../screens/CadastroScreen';
 import BottomTabsNavigator from './BottomTabsNavigator';
+import AtualizarVisitaScreen from '../screens/AtualizarVisitaScreen';
+import ConsultaVisitasScreen from '../screens/ConsultaVisitasScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -22,6 +24,8 @@ export const MainStackNavigator = () => {
             <Stack.Screen name='Login' component={LoginScreen} />
             <Stack.Screen name='Cadastro' component={CadastroScreen} />
             <Stack.Screen name='Detalhes' component={DetalheScreen}/>
+            <Stack.Screen name='Consulta' component={ConsultaVisitasScreen}/>
+            <Stack.Screen name='Atualizar' component={AtualizarVisitaScreen}/>
             <Stack.Screen name='Home' component={BottomTabsNavigator} />
         </Stack.Navigator>
     );

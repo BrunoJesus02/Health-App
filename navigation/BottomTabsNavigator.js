@@ -1,6 +1,5 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import {Text, Platform } from 'react-native';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import HomeScreen from "../screens/HomeScreen";
 import AgendarVisitaScreen from "../screens/AgendarVisitaScreen";
@@ -64,7 +63,7 @@ export default () => {
                                         fontSize: 11,
                                         textAlign: 'center'
                                     }}>
-                                    Agendar
+                                    Cadastrar
                                 </Text>
                             </>
                         )
@@ -89,7 +88,7 @@ export default () => {
                                         fontSize: 11,
                                         textAlign: 'center'
                                     }}>
-                                    Perfil
+                                    Agenda
                                 </Text>
                             </>
                         )
