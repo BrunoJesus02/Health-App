@@ -46,14 +46,14 @@ const ConsultaVisitasScreen = ({ navigation }) => {
             keyExtractor={({id}) => id}
             renderItem={({item}) => (
             <View style={styles.card}>
-              <View>
+              <View style={{width: 200}}>
                 <Text style={styles.textContent}>Nome do Paciente: {item.nome}</Text>
                 <Text style={styles.textContent}>Hospital: {item.hospital}</Text>
                 <Text style={styles.textContent}>Data da visita: {item.dataDaVisita}</Text>
               </View>
                
-              <View style={{flex: 1, flexDirection: 'row', marginLeft: 60}}>
-                <IconMaterial name="edit" size={20} color='#63877E' style={{marginRight: 20}} onPress={() => navigation.navigate('Atualizar', {info: item, id: item.id})}/>
+              <View style={{flex: 1, flexDirection: 'row'}}>
+                <IconMaterial name="edit" size={20} color='#63877E' style={{marginRight: 20, marginLeft: 25}} onPress={() => navigation.navigate('Atualizar', {info: item, id: item.id})}/>
                 <IconMaterial name="delete" size={20} color='#63877E' onPress={() => {removerItem(item.id)}}/>
               </View>
             </View>
@@ -91,7 +91,8 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     backgroundColor: '#B9FFEE',
     padding: 15,
-    marginTop: 15
+    marginTop: 15,
+    width: 320
   },
   textContent: {
     fontWeight: '300'
