@@ -1,7 +1,7 @@
 # HealthApp
 
 Projeto desenvolvido para Challenge Fiap 2022.
-* Vídeo apresentando aplicação:
+* Vídeo apresentando aplicação: https://youtu.be/JprAU7BtdxQ
 
 # Hybrid Innovation
 
