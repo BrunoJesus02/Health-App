@@ -21,7 +21,7 @@ const HomeScreen = ({ navigation }) => {
           <IconMaterial name="bandage" size={30} color='#63877E'/>
         </View>
         <View style={styles.icons}>
-          <IconMaterial name="calendar" size={30} color='#63877E'/>
+          <IconMaterial name="calendar" size={30} color='#63877E' onPress={() => navigation.navigate('Maps')}/>
         </View>
         <View style={styles.icons}>
           <IconMaterial name="book-open-outline" size={30} color='#63877E'/>
