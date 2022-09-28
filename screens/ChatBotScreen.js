@@ -1,5 +1,7 @@
 import React, {useState, useCallback, useEffect} from 'react';
 import {GiftedChat} from 'react-native-gifted-chat';
+import Ionicons from "react-native-vector-icons/Ionicons";
+
 
 
 export default function ChatBotScreen() {
@@ -67,6 +69,30 @@ export default function ChatBotScreen() {
     <GiftedChat
       messages={messages}
       onSend={(messages) =>{onSend(messages), console.log(messages[0].text), responseWatson(messages[0].text)}}
+      alwaysShowSend
+      showUserAvatar
+      isAnimated
+      renderActions={() => {
+        return (
+          <Ionicons
+            name="ios-mic"
+            size={35}
+            hitSlop={{ top: 20, bottom: 20, left: 50, right: 50 }}
+            color={"black"}
+            style={{
+              bottom: 50,
+              right: 0,
+              position: "absolute",
+              shadowColor: "#000",
+              shadowOffset: { width: 0, height: 0 },
+              shadowOpacity: 0.5,
+              zIndex: 2,
+              backgroundColor: "transparent"
+            }}
+
+          />
+        );
+      }}
       user={{
         _id: 1,
       }}
