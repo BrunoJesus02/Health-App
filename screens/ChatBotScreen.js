@@ -1,7 +1,7 @@
 import React, {useState, useCallback, useEffect} from 'react';
 import {GiftedChat} from 'react-native-gifted-chat';
 import Ionicons from "react-native-vector-icons/Ionicons";
-
+import Firebase from '../FireBase';
 
 
 export default function ChatBotScreen() {
