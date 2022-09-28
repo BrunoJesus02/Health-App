@@ -27,7 +27,7 @@ export default function ChatBotScreen() {
     console.log('session id', session_id)
     onSend([
         {
-            _id: new Date(),
+            _id: messageIdGenerator(),
             text: resposta.text,
             createdAt: new Date(),
             user: {
@@ -38,6 +38,22 @@ export default function ChatBotScreen() {
 
 
   }
+
+  const messageIdGenerator = () => {
+    // generates uuid.
+    return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, c => {
+        let r = (Math.random() * 16) | 0,
+            v = c == "x" ? r : (r & 0x3) | 0x8;
+        return v.toString(16);
+    });
+}
+
+  // Callback quando estiver enviando a mensagem
+  const onSend = useCallback((messages = []) => {
+    setMessages((previousMessages) =>
+      GiftedChat.append(previousMessages, messages),
+    );
+  }, []);
 
   // Onde vai ser feito o armazenamento das mensagens
   useEffect(() => {
@@ -57,14 +73,6 @@ export default function ChatBotScreen() {
   }, []);
 
   
-
-  // Callback quando estiver enviando a mensagem
-  const onSend = useCallback((messages = []) => {
-    setMessages((previousMessages) =>
-      GiftedChat.append(previousMessages, messages),
-    );
-  }, []);
-
   return (
     <GiftedChat
       messages={messages}
@@ -72,6 +80,7 @@ export default function ChatBotScreen() {
       alwaysShowSend
       showUserAvatar
       isAnimated
+      messageIdGenerator={() => messageIdGenerator()}
       renderActions={() => {
         return (
           <Ionicons
