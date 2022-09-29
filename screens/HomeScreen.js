@@ -1,9 +1,9 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView, Image, Pressable, FlatList } from 'react-native';
-import Icon from 'react-native-vector-icons/EvilIcons'
-import IconMaterial from 'react-native-vector-icons/MaterialCommunityIcons'
+import { FlatList, Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import IconMaterial from 'react-native-vector-icons/MaterialCommunityIcons';
+
+import { icons } from '../constants';
 import fakeDataAPI from '../constants/fakeDataAPI';
-import { icons } from '../constants'
 
 const HomeScreen = ({ navigation }) => {
   return (
@@ -12,7 +12,7 @@ const HomeScreen = ({ navigation }) => {
         <View style={styles.circle}/>
       </View>
 
-      <View style={{flex: 1, alignItems: 'center'}}v>
+      <View style={{flex: 1, alignItems: 'center'}}>
         <Image style={{height: 150, width: 150}} source={require('../img/profile.png')}/>
       </View>
 
@@ -21,7 +21,7 @@ const HomeScreen = ({ navigation }) => {
           <IconMaterial name="bandage" size={30} color='#63877E'/>
         </View>
         <View style={styles.icons}>
-          <IconMaterial name="calendar" size={30} color='#63877E' onPress={() => navigation.navigate('Maps')}/>
+          <IconMaterial name="help-rhombus-outline" size={30} color='#63877E' onPress={() => navigation.navigate('Maps')}/>
         </View>
         <View style={styles.icons}>
           <IconMaterial name="book-open-outline" size={30} color='#63877E'/>
