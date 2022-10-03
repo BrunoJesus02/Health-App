@@ -9,8 +9,8 @@ export default function ChatBotScreen() {
   // Onde armazena as mensagens
   const [messages, setMessages] = useState([]);
   const [session_id, setSession_id] = useState('')
-  const [recording, setRecording] = React.useState();
-  const [recordings, setRecordings] = React.useState([]);
+  const [recording, setRecording] = useState();
+  const [recordings, setRecordings] = useState([]);
 
   const getWatson = async (props) => {
     try {
@@ -53,8 +53,6 @@ export default function ChatBotScreen() {
         );
 
         setRecording(recording);
-      } else {
-        setMessage("Please grant permission to app to access microphone");
       }
     } catch (err) {
       console.error('Failed to start recording', err);
@@ -69,7 +67,6 @@ export default function ChatBotScreen() {
     const { sound, status } = await recording.createNewLoadedSoundAsync();
     updatedRecordings.push({
       sound: sound,
-      duration: getDurationFormatted(status.durationMillis),
       file: recording.getURI()
     });
 
@@ -87,16 +84,8 @@ export default function ChatBotScreen() {
     ])
   }
 
-  function getDurationFormatted(millis) {
-    const minutes = millis / 1000 / 60;
-    const minutesDisplay = Math.floor(minutes);
-    const seconds = Math.round((minutes - minutesDisplay) * 60);
-    const secondsDisplay = seconds < 10 ? `0${seconds}` : seconds;
-    return `${minutesDisplay}:${secondsDisplay}`;
-  }
 
   const renderAudio = props => {
-    console.log("PROPS AUSDIO", props)
     return !props.currentMessage.audio ? (
         <View />
     ) : (
