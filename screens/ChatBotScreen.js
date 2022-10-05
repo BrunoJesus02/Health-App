@@ -2,6 +2,8 @@ import React, {useState, useCallback, useEffect} from 'react';
 import {GiftedChat} from 'react-native-gifted-chat';
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { Audio } from 'expo-av';
+import axios from "axios";
+
 
 
 
@@ -82,6 +84,42 @@ export default function ChatBotScreen() {
           sound: sound
         }
     ])
+
+    const formData = new FormData();
+    formData.append("file", {
+      uri: recording.getURI(),
+      name: "test.wav",
+      type: "audio/wav",
+    });
+    formData.append("sessionId", session_id)
+    axios
+      .post(url='https://healthappchatbot.herokuapp.com/postaudio', data=formData, {
+        responseType: 'json',
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then( async function (response) {
+        const resposta = response.data.text
+        setSession_id(response.data.session_id)
+        onSend([
+          {
+              _id: messageIdGenerator(),
+              text: resposta,
+              createdAt: new Date(),
+              user: {
+                _id: 2,
+              },
+            }
+      ])
+        
+
+      })
+      .catch(function (error) {
+        console.log(error);
+        console.error(error.response);
+      });
+    console.log(formData);
   }
 
 
