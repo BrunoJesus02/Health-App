@@ -1,8 +1,38 @@
-import React from 'react';
+import React, {useState, useEffect } from 'react';
 import { StyleSheet, Text, View, Image, TextInput, Pressable } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 const LoginScreen = ({ navigation }) => {
+
+  const [ email, setEmail ] = useState();
+  const [ password, setPassword ] = useState();
+
+  const onInit = async () => {
+    
+  };
+
+  const signIn = async () => {
+    try {
+      const response = await fetch('https://fiap-digitalcare.herokuapp.com/api/auth', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          "email": email,
+          "password": password
+        })
+      });
+      const json = await response.text();
+      console.log(response.status);
+      console.log(json)
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => { onInit(); }, []);
+
   return (
     <View style={styles.container}>
       <Image source={require('../img/logoPequeno.png')} style={styles.logo}/>
@@ -11,16 +41,20 @@ const LoginScreen = ({ navigation }) => {
         <Text style={styles.text_content}>ENTRE NA SUA CONTA</Text>
 
         <TextInput style={styles.input}
+          onChangeText={setEmail}
+          value={email}
           placeholder = 'E-MAIL'
           placeholderTextColor={'#63877E'}/>
 
-        <TextInput style={styles.input}
+        <TextInput style={styles.input} 
+          onChangeText={setPassword}
+          value={password}
           placeholder = 'SENHA'
           placeholderTextColor={'#63877E'}/>
 
         <Pressable 
           style={styles.botaoAcessar}
-          onPress={() => navigation.replace('Home')}>
+          onPress={() => signIn()}>
           <Text style={{color: '#FFF', fontWeight: '400', fontSize: 15}}>ACESSAR</Text>
         </Pressable> 
         
