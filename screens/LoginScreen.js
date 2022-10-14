@@ -1,8 +1,32 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, Image, TextInput, Pressable } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../config.js";
 
 const LoginScreen = ({ navigation }) => {
+
+  const [inputUsername, setInputUsername] = useState('');
+  const [inputPassword, setInputPassword] = useState('');
+
+  const onInit = async () => {
+    // Se já estiver autenticado, redirecionar para a tela de Lista
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        navigation.replace('Home');
+      }
+    });
+  };
+
+  const login = async () => {
+      // Fazer o login. 
+      signInWithEmailAndPassword(auth, inputUsername, inputPassword)
+      .then(() => navigation.replace('Home'))
+      .catch((erro) => alert(erro.message))
+  };
+
+  useEffect(() => { onInit(); }, []);
+   
   return (
     <View style={styles.container}>
       <Image source={require('../img/logoPequeno.png')} style={styles.logo}/>
@@ -12,15 +36,20 @@ const LoginScreen = ({ navigation }) => {
 
         <TextInput style={styles.input}
           placeholder = 'E-MAIL'
-          placeholderTextColor={'#63877E'}/>
+          placeholderTextColor={'#63877E'}
+          value={inputUsername}
+          onChangeText={(value) => setInputUsername(value)}    />
 
         <TextInput style={styles.input}
           placeholder = 'SENHA'
-          placeholderTextColor={'#63877E'}/>
+          placeholderTextColor={'#63877E'}
+          value={inputPassword}
+          secureTextEntry={true}
+          onChangeText={(value) => setInputPassword(value)} />
 
         <Pressable 
           style={styles.botaoAcessar}
-          onPress={() => navigation.replace('Home')}>
+          onPress={() => login()}>
           <Text style={{color: '#FFF', fontWeight: '400', fontSize: 15}}>ACESSAR</Text>
         </Pressable> 
         

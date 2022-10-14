@@ -8,6 +8,8 @@ import BottomTabsNavigator from './BottomTabsNavigator';
 import AtualizarVisitaScreen from '../screens/AtualizarVisitaScreen';
 import ConsultaVisitasScreen from '../screens/ConsultaVisitasScreen';
 import MapsScreen from '../screens/MapsScreen';
+import CadastroTriagemScreen from '../screens/CadastroTriagemScreen';
+import AtualizarTriagemScreen from '../screens/AtualizarTriagemScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -28,6 +30,8 @@ export const MainStackNavigator = () => {
             <Stack.Screen name='Consulta' component={ConsultaVisitasScreen}/>
             <Stack.Screen name='Atualizar' component={AtualizarVisitaScreen}/>
             <Stack.Screen name='Maps' component={MapsScreen}/>
+            <Stack.Screen name='CadastroTriagem' component={CadastroTriagemScreen}/>
+            <Stack.Screen name='AtualizarTriagem' component={AtualizarTriagemScreen}/>
             <Stack.Screen name='Home' component={BottomTabsNavigator} />
         </Stack.Navigator>
     );
