@@ -102,6 +102,12 @@ const AtualizarTriagemScreen = ({ navigation, route }) => {
                     <Text style={{color: '#FFF', fontWeight: '400', fontSize: 15}}>CONFIRMAR</Text>
                 </Pressable>
 
+                <Pressable 
+                    style={styles.botaoAcessar}
+                    onPress={() => navigation.replace('Home')}>
+                    <Text style={{color: '#FFF', fontWeight: '400', fontSize: 15}}>VOLTAR</Text>
+                </Pressable>
+
                 <View style={styles.observ}>
                     <Text style={{fontWeight: '200', padding: 10, textAlign: 'justify'}}>OBS: A CONFIRMAÇÃO DA VISITA FICA PENDENTE DE APROVAÇÃO DO HOSPITAL E DO PACIENTE </Text>
                 </View>

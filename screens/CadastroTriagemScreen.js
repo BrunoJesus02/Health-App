@@ -68,6 +68,7 @@ const CadastroTriagemScreen = ({ navigation }) => {
                 <TextInput style={styles.input}
                     onChangeText={setHospital}
                     value={hospital}
+                    maxLength={15}
                     placeholder = 'HOSPITAL'
                     placeholderTextColor={'#63877E'}/>
         
@@ -106,6 +107,12 @@ const CadastroTriagemScreen = ({ navigation }) => {
                     style={styles.botaoAcessar}
                     onPress={() => cadastrar()}>
                     <Text style={{color: '#FFF', fontWeight: '400', fontSize: 15}}>CONFIRMAR</Text>
+                </Pressable>
+
+                <Pressable 
+                    style={styles.botaoAcessar}
+                    onPress={() => navigation.replace('Home')}>
+                    <Text style={{color: '#FFF', fontWeight: '400', fontSize: 15}}>VOLTAR</Text>
                 </Pressable>
 
                 <View style={styles.observ}>
