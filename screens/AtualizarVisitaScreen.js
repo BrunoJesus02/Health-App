@@ -9,16 +9,17 @@ const AtualizarVisitaScreen = ({ navigation, route }) => {
     const [ visivel, setVisivel ] = useState(false);
     const [ data, setData ] = useState([]);
 
-    const [nomePaciente, setNomePaciente]=useState(route.params.info.nome)
-    const [hospital, setHospital]=useState(route.params.info.hospital)
-    const [dataDaVisita, setDataDaVisita]=useState(route.params.info.dataDaVisita)
-    const [relacaoFamilia, setRelacaoFamilia]=useState(route.params.info.relacaoFamilia)
-    const [motivo, setMotivo]=useState(route.params.info.motivo)
 
     const onInit = async () => {
         try {
           const lista = await AsyncStorage.getItem('list')
-          if(lista != null) {
+            const [nomePaciente, setNomePaciente]=useState(route.params.info.nome)
+            const [hospital, setHospital]=useState(route.params.info.hospital)
+            const [dataDaVisita, setDataDaVisita]=useState(route.params.info.dataDaVisita)
+            const [relacaoFamilia, setRelacaoFamilia]=useState(route.params.info.relacaoFamilia)
+            const [motivo, setMotivo]=useState(route.params.info.motivo)
+
+            if(lista != null) {
             const listaJson = JSON.parse(lista)
             const listaFiltrada = listaJson.filter(item => item.id !== route.params.info.id)
             setData(listaFiltrada)
