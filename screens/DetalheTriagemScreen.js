@@ -4,8 +4,22 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 import { icons } from '../constants'
 
+import { auth, db } from "../config.js";
+import { set, ref, onValue, remove, update, equalTo, query, orderByChild, push, child } from "firebase/database";
+
 
 const DetalheTriagemScreen = ({ navigation, route }) => {
+
+    const deletar = (id) => {
+        remove(ref(db, `/items/${id}`))
+        .then(
+            navigation.replace('Home')
+        )
+        .catch((err) => {
+          alert(err.message);
+        })
+      };
+
     return (
         <View style={styles.container}>
 
@@ -17,6 +31,20 @@ const DetalheTriagemScreen = ({ navigation, route }) => {
             </View>
 
             <View style={styles.background}>
+
+            <View>
+            <Pressable style={styles.delete}
+                    onPress={() =>  navigation.navigate('AtualizarTriagem', {info: route.params.info})}>
+               <Text>EDITAR</Text>
+            </Pressable>
+
+            <Pressable style={styles.delete}
+                    onPress={() => deletar(route.params.info.id)}>
+               <Text>DELETAR</Text>
+            </Pressable>
+            </View>
+           
+
                <View style={styles.content_info}>
                    <View style={styles.content_icon}>
                         <Image source={icons.temperatura}/>  
@@ -50,7 +78,7 @@ const DetalheTriagemScreen = ({ navigation, route }) => {
                <Text style={{marginLeft: 100, marginTop: 40, color: '#FFF', fontWeight: '400', fontSize: 15}}>OBSERVAÇÕES DO MÉDICO</Text>
 
                <View style={styles.info_desc}>
-                    <Text style={styles.desc_med}>{route.params.info.descricao}</Text>
+                    <Text style={styles.desc_med}>{route.params.info.observacao}</Text>
                </View>
             </View>
 
@@ -130,5 +158,17 @@ const styles = StyleSheet.create({
         marginTop: 15,
         marginRight: 10,
         textAlign: 'justify'
+    },
+    delete: {
+        marginTop: 10,
+        height: 40,
+        width: 60,
+        backgroundColor: '#FFF',
+        right: 0,
+        marginLeft: 300,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 10
     }
   })

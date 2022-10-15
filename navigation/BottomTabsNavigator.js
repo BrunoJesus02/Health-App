@@ -64,7 +64,7 @@ export default () => {
                                         fontSize: 11,
                                         textAlign: 'center'
                                     }}>
-                                    Cadastrar
+                                    Cadastro
                                 </Text>
                             </>
                         )
