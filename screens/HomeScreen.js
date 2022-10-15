@@ -5,11 +5,9 @@ import IconMaterialSg from 'react-native-vector-icons/FontAwesome';
 
 
 import { icons } from '../constants';
-import fakeDataAPI from '../constants/fakeDataAPI';
-
 import { signOut, onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "../config.js";
-import { set, ref, onValue, remove, update, equalTo, query, orderByChild, push, child } from "firebase/database";
+import { set, ref, onValue, equalTo, query, orderByChild} from "firebase/database";
 
 const HomeScreen = ({ navigation }) => {
 
@@ -56,9 +54,9 @@ const HomeScreen = ({ navigation }) => {
         <View style={styles.circle}/>
       </View>
 
-      <Pressable style={{height: 30, width: 35, backgroundColor: '#5CBFA6', position: 'absolute', top: 20, right: 10}}
+      <Pressable style={{height: 30, width: 35, backgroundColor: '#5CBFA6', position: 'absolute', top: 50, right: 10}}
             onPress={() => sair()}>
-        <IconMaterialSg name="sign-out" size={20} color='#000'/>
+        <IconMaterialSg name="sign-out" size={25} color='#000'/>
       </Pressable>
 
       <View style={{flex: 1, alignItems: 'center'}}>
@@ -182,7 +180,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginLeft: 5,
-    marginTop: 5
+    marginTop: 5,
+    width: 120
   },
   triagem: {
     display: 'flex',

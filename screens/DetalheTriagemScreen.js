@@ -21,6 +21,7 @@ const DetalheTriagemScreen = ({ navigation, route }) => {
       };
 
     return (
+        <ScrollView>
         <View style={styles.container}>
 
             <View style={styles.header}>
@@ -35,12 +36,12 @@ const DetalheTriagemScreen = ({ navigation, route }) => {
             <View>
             <Pressable style={styles.delete}
                     onPress={() =>  navigation.navigate('AtualizarTriagem', {info: route.params.info})}>
-               <Text>EDITAR</Text>
+               <Text style={{fontSize: 12, fontWeight: '300'}}>EDITAR</Text>
             </Pressable>
 
             <Pressable style={styles.delete}
                     onPress={() => deletar(route.params.info.id)}>
-               <Text>DELETAR</Text>
+               <Text style={{fontSize: 12, fontWeight: '300'}}>DELETAR</Text>
             </Pressable>
             </View>
            
@@ -83,7 +84,7 @@ const DetalheTriagemScreen = ({ navigation, route }) => {
             </View>
 
         </View>
-
+        </ScrollView>
         
         
     );
@@ -162,7 +163,7 @@ const styles = StyleSheet.create({
     delete: {
         marginTop: 10,
         height: 40,
-        width: 60,
+        width: 70,
         backgroundColor: '#FFF',
         right: 0,
         marginLeft: 300,
